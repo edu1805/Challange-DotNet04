@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using ChallangeMottu.Application;
 using ChallangeMottu.Application.UseCase;
 using ChallangeMottu.Application.Validators;
@@ -9,8 +10,9 @@ namespace ChallangeMottu.Api.Controllers;
 
 
 [ApiController]
-[Route("api/motos")]
+[Route("api/v{version:apiVersion}/[controller]")]
 [SwaggerTag("Controller responsável por gerenciar motos.")]
+[ApiVersion("1.0")]
 public class MotoController : ControllerBase
 {
     private readonly IMotoService _motoService;

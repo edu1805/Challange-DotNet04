@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using ChallangeMottu.Application;
 using ChallangeMottu.Application.UseCase;
 using ChallangeMottu.Application.Validators;
@@ -8,7 +9,8 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace ChallangeMottu.Api.Controllers;
 
 [ApiController]
-[Route("api/usuarios")]
+[Route("api/v{version:apiVersion}/[controller]")]
+[ApiVersion("2.0")]
 [SwaggerTag("Controller responsável por gerenciar usuários.")]
 public class UsuarioController : ControllerBase
 {

@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using AutoMapper;
 using ChallangeMottu.Application;
 using ChallangeMottu.Application.UseCase;
@@ -8,7 +9,8 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace ChallangeMottu.Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/v{version:apiVersion}/[controller]")]
+[ApiVersion("1.0")]
 [SwaggerTag("Controller responsável por gerenciar a localização atual das motos no pátio.")]
 public class LocalizacaoAtualController : ControllerBase
 {

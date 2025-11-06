@@ -1,6 +1,7 @@
 using System.Reflection;
 using ChallangeMottu.Api.Extensions;
 using ChallangeMottu.Application;
+using ChallangeMottu.Application.Configs;
 using ChallangeMottu.Infrastructure;
 using ChallangeMottu.Application.Mappings;
 using ChallangeMottu.Application.Validators;
@@ -9,7 +10,11 @@ using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 
+
 var builder = WebApplication.CreateBuilder(args);
+
+var configs = builder.Configuration.Get<Settings>();
+builder.Services.AddSingleton(configs);
 
 builder.Services.AddControllers();
 
@@ -18,27 +23,9 @@ builder.Services.AddValidatorsFromAssemblyContaining<CreateUsuarioDtoValidator>(
 // builder.Services.AddFluentValidationAutoValidation();
 // builder.Services.AddFluentValidationClientsideAdapters();
 
+builder.Services.AddVersioning();
 // Swagger
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(swagger =>
-{
-    swagger.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = builder.Configuration["Swagger:Title"] ?? "MotoMap - API",
-        Version = "v1",
-        Description =
-            "API para gerenciamento de motos no pátio da Mottu - " + DateTime.Now.Year + "<br/><br/>" +
-            "Integrantes:<br/>" +
-            "- Eduardo Barriviera (RM555309) - https://github.com/edu1805<br/>" +
-            "- Thiago Freitas (RM556795) - https://github.com/thiglfa<br/>" +
-            "- Bruno Centurion Fernandes (RM556531) - https://github.com/brunocenturion"
-    });
-
-    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-    swagger.IncludeXmlComments(xmlPath);
-    swagger.EnableAnnotations();
-});
+builder.Services.AddSwagger(configs);
 
 // AutoMapper
 builder.Services.AddAutoMapper(typeof(MotoProfile), typeof(LocalizacaoAtualProfile), typeof(UsuarioProfile));
@@ -65,7 +52,11 @@ app.MapHealthChecks("/health-details", new HealthCheckOptions
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(ui =>
+    {
+        ui.SwaggerEndpoint("/swagger/v1/swagger.json",  "MotoMap.API v1");
+        ui.SwaggerEndpoint("/swagger/v2/swagger.json",  "MotoMap.API v2");
+    });
 }
 
 app.UseHttpsRedirection();

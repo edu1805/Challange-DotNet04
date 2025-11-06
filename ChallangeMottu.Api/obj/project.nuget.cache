@@ -1,9 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "57eK9k6SZZg=",
+  "dgSpecHash": "Qg3XfxpDohc=",
   "success": true,
   "projectFilePath": "C:\\Users\\Home\\OneDrive\\Área de Trabalho\\Challenge\\dotnet\\ChallangeMottu\\ChallangeMottu.Api\\ChallangeMottu.Api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Home\\.nuget\\packages\\asp.versioning.abstractions\\8.1.0\\asp.versioning.abstractions.8.1.0.nupkg.sha512",
+    "C:\\Users\\Home\\.nuget\\packages\\asp.versioning.http\\8.1.0\\asp.versioning.http.8.1.0.nupkg.sha512",
+    "C:\\Users\\Home\\.nuget\\packages\\asp.versioning.mvc\\8.1.0\\asp.versioning.mvc.8.1.0.nupkg.sha512",
+    "C:\\Users\\Home\\.nuget\\packages\\asp.versioning.mvc.apiexplorer\\8.1.0\\asp.versioning.mvc.apiexplorer.8.1.0.nupkg.sha512",
     "C:\\Users\\Home\\.nuget\\packages\\aspnetcore.healthchecks.oracle\\8.0.1\\aspnetcore.healthchecks.oracle.8.0.1.nupkg.sha512",
     "C:\\Users\\Home\\.nuget\\packages\\aspnetcore.healthchecks.ui.client\\8.0.1\\aspnetcore.healthchecks.ui.client.8.0.1.nupkg.sha512",
     "C:\\Users\\Home\\.nuget\\packages\\aspnetcore.healthchecks.ui.core\\8.0.1\\aspnetcore.healthchecks.ui.core.8.0.1.nupkg.sha512",

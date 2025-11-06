@@ -254,3 +254,7 @@ C:\Users\Home\OneDrive\Área de Trabalho\Challenge\dotnet\ChallangeMottu\Challan
 C:\Users\Home\OneDrive\Área de Trabalho\Challenge\dotnet\ChallangeMottu\ChallangeMottu.Api\bin\Debug\net8.0\HealthChecks.Oracle.dll
 C:\Users\Home\OneDrive\Área de Trabalho\Challenge\dotnet\ChallangeMottu\ChallangeMottu.Api\bin\Debug\net8.0\HealthChecks.UI.Client.dll
 C:\Users\Home\OneDrive\Área de Trabalho\Challenge\dotnet\ChallangeMottu\ChallangeMottu.Api\bin\Debug\net8.0\HealthChecks.UI.Core.dll
+C:\Users\Home\OneDrive\Área de Trabalho\Challenge\dotnet\ChallangeMottu\ChallangeMottu.Api\bin\Debug\net8.0\Asp.Versioning.Abstractions.dll
+C:\Users\Home\OneDrive\Área de Trabalho\Challenge\dotnet\ChallangeMottu\ChallangeMottu.Api\bin\Debug\net8.0\Asp.Versioning.Http.dll
+C:\Users\Home\OneDrive\Área de Trabalho\Challenge\dotnet\ChallangeMottu\ChallangeMottu.Api\bin\Debug\net8.0\Asp.Versioning.Mvc.dll
+C:\Users\Home\OneDrive\Área de Trabalho\Challenge\dotnet\ChallangeMottu\ChallangeMottu.Api\bin\Debug\net8.0\Asp.Versioning.Mvc.ApiExplorer.dll
