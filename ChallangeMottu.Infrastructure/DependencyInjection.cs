@@ -12,8 +12,8 @@ public static class DependencyInjection
     {
         services.AddDbContext<ChallangeMottuContext>(options =>
         {
-            var conn = configuration.GetConnectionString("SqlConnection");
-            options.UseSqlServer(conn); 
+            var conn = configuration.GetConnectionString("OracleConnection");
+            options.UseOracle(conn); 
         });
         
         services.AddScoped<IMotoRepository, MotoRepository>();

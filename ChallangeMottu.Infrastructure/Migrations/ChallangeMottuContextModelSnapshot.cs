@@ -3,8 +3,8 @@ using System;
 using ChallangeMottu.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Oracle.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
@@ -20,95 +20,95 @@ namespace ChallangeMottu.Infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "8.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            OracleModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("ChallangeMottu.Domain.LocalizacaoAtual", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("RAW(16)")
                         .HasColumnName("ID")
-                        .HasDefaultValueSql("NEWID()");
+                        .HasDefaultValueSql("SYS_GUID()");
 
                     b.Property<double>("CoordenadaX")
-                        .HasColumnType("float");
+                        .HasColumnType("BINARY_DOUBLE");
 
                     b.Property<double>("CoordenadaY")
-                        .HasColumnType("float");
+                        .HasColumnType("BINARY_DOUBLE");
 
                     b.Property<DateTime>("DataHoraAtualizacao")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TIMESTAMP(7)");
 
                     b.Property<Guid>("MotoId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("RAW(16)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("MotoId");
 
-                    b.ToTable("T_LOCALIZACAO_ATUAL_MOTTU", (string)null);
+                    b.ToTable("T_LOCALIZACAO_ATUAL-MOTTU", (string)null);
                 });
 
             modelBuilder.Entity("ChallangeMottu.Domain.Moto", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("RAW(16)")
                         .HasColumnName("ID")
-                        .HasDefaultValueSql("NEWID()");
+                        .HasDefaultValueSql("SYS_GUID()");
 
                     b.Property<string>("Placa")
                         .IsRequired()
                         .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)")
+                        .HasColumnType("NVARCHAR2(10)")
                         .HasColumnName("PLACA");
 
                     b.Property<string>("Posicao")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(10)")
+                        .HasColumnType("NVARCHAR2(50)")
                         .HasColumnName("STATUS");
 
                     b.Property<DateTime>("UltimaAtualizacao")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("TIMESTAMP(7)")
                         .HasColumnName("ULTIMA_ATUALIZACAO");
 
                     b.HasKey("Id");
 
-                    b.ToTable("T_MOTOS_MOTTU", (string)null);
+                    b.ToTable("T_MOTOS-MOTTU", (string)null);
                 });
 
             modelBuilder.Entity("ChallangeMottu.Domain.Usuario", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("RAW(16)")
                         .HasColumnName("ID")
-                        .HasDefaultValueSql("NEWID()");
+                        .HasDefaultValueSql("SYS_GUID()");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)")
+                        .HasColumnType("NVARCHAR2(150)")
                         .HasColumnName("EMAIL");
 
                     b.Property<Guid?>("MotoId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("RAW(16)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)")
+                        .HasColumnType("NVARCHAR2(100)")
                         .HasColumnName("NOME");
 
                     b.HasKey("Id");
 
                     b.HasIndex("MotoId");
 
-                    b.ToTable("T_USUARIOS_MOTTU", (string)null);
+                    b.ToTable("T_USUARIOS-MOTTU", (string)null);
                 });
 
             modelBuilder.Entity("ChallangeMottu.Domain.LocalizacaoAtual", b =>

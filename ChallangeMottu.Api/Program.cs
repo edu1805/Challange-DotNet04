@@ -1,9 +1,12 @@
 using System.Reflection;
+using ChallangeMottu.Api.Extensions;
 using ChallangeMottu.Application;
 using ChallangeMottu.Infrastructure;
 using ChallangeMottu.Application.Mappings;
 using ChallangeMottu.Application.Validators;
 using FluentValidation;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -44,7 +47,19 @@ builder.Services.AddAutoMapper(typeof(MotoProfile), typeof(LocalizacaoAtualProfi
 builder.Services.AddInfrastructure(builder.Configuration); // DbContext + Repositories
 builder.Services.AddApplication(); // Services (MotoService, LocalizacaoAtualService, etc.)
 
+// HealthCheck
+builder.Services.AddHealthCheckConfiguration(builder.Configuration);
+
 var app = builder.Build();
+
+// ------------------------------
+// Health Check Endpoints
+// ------------------------------
+app.MapHealthChecks("/health");
+app.MapHealthChecks("/health-details", new HealthCheckOptions
+{
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
 
 // Middleware
 if (app.Environment.IsDevelopment())

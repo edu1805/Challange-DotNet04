@@ -8,15 +8,15 @@ public class UsuarioMapping : IEntityTypeConfiguration<Usuario>
 {
     public void Configure(EntityTypeBuilder<Usuario> builder)
     {
-        builder.ToTable("T_USUARIOS_MOTTU"); // nome da tabela no Oracle
+        builder.ToTable("T_USUARIOS-MOTTU"); // nome da tabela no Oracle
 
         builder.HasKey(u => u.Id);
 
         builder.Property(u => u.Id)
             .HasColumnName("ID")
-            .HasColumnType("uniqueidentifier")
+            .HasColumnType("RAW(16)")
             .IsRequired()
-            .HasDefaultValueSql("NEWID()");
+            .HasDefaultValueSql("SYS_GUID()");
 
         builder.Property(u => u.Nome)
             .HasColumnName("NOME")
