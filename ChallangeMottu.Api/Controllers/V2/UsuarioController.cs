@@ -2,6 +2,7 @@ using Asp.Versioning;
 using ChallangeMottu.Application;
 using ChallangeMottu.Application.UseCase;
 using ChallangeMottu.Application.Validators;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Swashbuckle.AspNetCore.Annotations;
@@ -24,10 +25,14 @@ public class UsuarioController : ControllerBase
     /// <summary>
     /// Lista todos os usuários.
     /// </summary>
+    /// <remarks>
+    /// **Requer autenticação:** Token JWT no header Authorization
+    /// </remarks>
     [HttpGet]
     [SwaggerOperation(Summary = "Listar usuários", Description = "Retorna todos os usuários cadastrados.")]
     [SwaggerResponse(200, "Lista de usuários retornada com sucesso", typeof(IEnumerable<UsuarioDto>))]
     [SwaggerResponse(500, "Erro interno no servidor")]
+    [Authorize]
     public async Task<ActionResult<IEnumerable<UsuarioDto>>> GetAll()
     {
         var usuarios = await _usuarioService.ListarTodosAsync();
@@ -37,10 +42,14 @@ public class UsuarioController : ControllerBase
     /// <summary>
     /// Obtém um usuário por ID.
     /// </summary>
+    /// <remarks>
+    ///**Requer autenticação:** Token JWT no header Authorization
+    /// </remarks>
     [HttpGet("{id}")]
     [SwaggerOperation(Summary = "Buscar usuário por ID", Description = "Retorna um usuário específico pelo ID.")]
     [SwaggerResponse(200, "Usuário encontrado", typeof(UsuarioDto))]
     [SwaggerResponse(404, "Usuário não encontrado")]
+    [Authorize]
     public async Task<ActionResult<UsuarioDto>> GetById(Guid id)
     {
         var usuario = await _usuarioService.ObterPorIdAsync(id);
@@ -52,6 +61,18 @@ public class UsuarioController : ControllerBase
     /// <summary>
     /// Cria um novo usuário.
     /// </summary>
+    /// <remarks>
+    /// Exemplo de requisição:
+    /// 
+    ///     POST /api/v2/usuario/criar
+    ///     {
+    ///         "nome": "usuario",
+    ///         "email": "usuario@email.com",
+    ///         "senha": "senha123",
+    ///         "motoId": null
+    ///     }
+    /// 
+    /// </remarks>
     [HttpPost("criar")]
     [SwaggerOperation(Summary = "Criar usuário", Description = "Cria um novo usuário com os dados informados.")]
     [SwaggerResponse(201, "Usuário criado com sucesso", typeof(UsuarioDto))]
@@ -78,7 +99,11 @@ public class UsuarioController : ControllerBase
     /// <summary>
     /// Atualiza um usuário existente.
     /// </summary>
+    /// <remarks>
+    /// **Requer autenticação:** Token JWT no header Authorization
+    /// </remarks>
     [HttpPut("editar/{id}")]
+    [Authorize]
     [SwaggerOperation(Summary = "Atualizar usuário", Description = "Atualiza os dados de um usuário existente.")]
     [SwaggerResponse(204, "Usuário atualizado com sucesso")]
     [SwaggerResponse(404, "Usuário não encontrado")]
@@ -93,10 +118,14 @@ public class UsuarioController : ControllerBase
     /// <summary>
     /// Deleta um usuário.
     /// </summary>
+    /// <remarks>
+    /// **Requer autenticação:** Token JWT no header Authorization
+    /// </remarks>
     [HttpDelete("delete/{id}")]
     [SwaggerOperation(Summary = "Deletar usuário", Description = "Remove um usuário do sistema.")]
     [SwaggerResponse(204, "Usuário deletado com sucesso")]
     [SwaggerResponse(404, "Usuário não encontrado")]
+    [Authorize]
     public async Task<ActionResult> Delete(Guid id)
     {
         var deletado = await _usuarioService.DeletarAsync(id);

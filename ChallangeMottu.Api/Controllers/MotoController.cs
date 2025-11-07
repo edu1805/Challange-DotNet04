@@ -2,6 +2,7 @@ using Asp.Versioning;
 using ChallangeMottu.Application;
 using ChallangeMottu.Application.UseCase;
 using ChallangeMottu.Application.Validators;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Swashbuckle.AspNetCore.Annotations;
@@ -28,6 +29,7 @@ public class MotoController : ControllerBase
     [HttpGet]
     [SwaggerOperation(Summary = "Listar motos", Description = "Retorna todas as motos ou apenas as que têm o status informado.")]
     [SwaggerResponse(200, "Lista de motos retornada com sucesso", typeof(IEnumerable<MotoDto>))]
+    [SwaggerResponse(401, "Não autorizado - Token inválido ou ausente")]
     [SwaggerResponse(500, "Erro interno no servidor")]
     public async Task<ActionResult<IEnumerable<MotoDto>>> GetAll([FromQuery] string? status = null)
     {
@@ -38,10 +40,16 @@ public class MotoController : ControllerBase
     /// <summary>
     /// Obtém uma moto por ID.
     /// </summary>
+    /// <remarks>
+    /// **Requer autenticação:** Token JWT no header Authorization
+    /// </remarks>
     [HttpGet("{id}")]
     [SwaggerOperation(Summary = "Buscar moto por ID", Description = "Retorna uma moto específica pelo ID.")]
     [SwaggerResponse(200, "Moto encontrada", typeof(MotoDto))]
+    [SwaggerResponse(401, "Não autorizado - Token inválido ou ausente")]
     [SwaggerResponse(404, "Moto não encontrada")]
+    [SwaggerResponse(500, "Erro interno do servidor")]
+    [Authorize]
     public async Task<ActionResult<MotoDto>> GetById(Guid id)
     {
         var moto = await _motoService.BuscarPorIdAsync(id);
@@ -53,10 +61,27 @@ public class MotoController : ControllerBase
     /// <summary>
     /// Cria uma nova moto.
     /// </summary>
+    /// <remarks>
+    /// Exemplo de requisição:
+    /// 
+    ///     POST /api/v1/moto/criar
+    ///     {
+    ///         "placa": "ABC1D23",
+    ///         "posicao": "A1",
+    ///         "status": "pronta,
+    ///         "ultimaAtualizacao": "2025-11-07T21:51:00.125Z"
+    ///     }
+    /// **Status permitidos para moto:** "pronta", "revisao", "reservada", "fora de serviço", "sem placa"
+    /// 
+    /// **Requer autenticação:** Token JWT no header Authorization
+    /// </remarks>
     [HttpPost("criar")]
     [SwaggerOperation(Summary = "Criar moto", Description = "Cria uma nova moto com os dados informados.")]
     [SwaggerResponse(201, "Moto criada com sucesso", typeof(MotoDto))]
     [SwaggerResponse(400, "Dados inválidos")]
+    [SwaggerResponse(401, "Não autorizado - Token inválido ou ausente")]
+    [SwaggerResponse(500, "Erro interno do servidor")]
+    [Authorize]
     public async Task<ActionResult<MotoDto>> Create(
         [FromBody] CreateMotoDto dto,
         [FromServices] CreateMotoDtoValidator validator)
@@ -79,10 +104,17 @@ public class MotoController : ControllerBase
     /// <summary>
     /// Atualiza uma moto existente.
     /// </summary>
+    /// <remarks>
+    ///**Requer autenticação:** Token JWT no header Authorization
+    /// </remarks>
     [HttpPut("editar/{id}")]
     [SwaggerOperation(Summary = "Atualizar moto", Description = "Atualiza os dados de uma moto existente.")]
-    [SwaggerResponse(204, "Moto atualizada com sucesso")]
+    [SwaggerResponse(200, "Moto atualizada com sucesso", typeof(MotoDto))]
+    [SwaggerResponse(400, "Dados inválidos", typeof(ValidationProblemDetails))]
+    [SwaggerResponse(401, "Não autorizado - Token inválido ou ausente")]
     [SwaggerResponse(404, "Moto não encontrada")]
+    [SwaggerResponse(500, "Erro interno do servidor")]
+    [Authorize]
     public async Task<ActionResult> Update(Guid id, [FromBody] UpdateMotoDto dto)
     {
         var atualizado = await _motoService.AtualizarAsync(id, dto);
@@ -94,10 +126,16 @@ public class MotoController : ControllerBase
     /// <summary>
     /// Deleta uma moto.
     /// </summary>
+    /// <remarks>
+    ///**Requer autenticação:** Token JWT no header Authorization
+    /// </remarks>
     [HttpDelete("delete/{id}")]
     [SwaggerOperation(Summary = "Deletar moto", Description = "Remove uma moto do sistema.")]
     [SwaggerResponse(204, "Moto deletada com sucesso")]
     [SwaggerResponse(404, "Moto não encontrada")]
+    [SwaggerResponse(401, "Não autorizado - Token inválido ou ausente")]
+    [SwaggerResponse(500, "Erro interno do servidor")]
+    [Authorize]
     public async Task<ActionResult> Delete(Guid id)
     {
         var deletado = await _motoService.DeletarAsync(id);

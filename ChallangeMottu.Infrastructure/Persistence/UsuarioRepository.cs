@@ -20,6 +20,12 @@ public class UsuarioRepository : IUsuarioRepository
             .FirstOrDefaultAsync(u => u.Id == id);
     }
 
+    public async Task<Usuario?> BuscarPorEmailAsync(string email)
+    {
+        return await _context.Usuario
+            .FirstOrDefaultAsync(u => u.Email == email);
+    }
+
     public async Task<IEnumerable<Usuario>> ListarTodosAsync()
     {
         return await _context.Usuario

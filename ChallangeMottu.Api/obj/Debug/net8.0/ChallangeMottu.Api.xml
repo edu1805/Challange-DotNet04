@@ -13,46 +13,108 @@
             <summary>
             Obtém uma moto por ID.
             </summary>
+            <remarks>
+            **Requer autenticação:** Token JWT no header Authorization
+            </remarks>
         </member>
         <member name="M:ChallangeMottu.Api.Controllers.MotoController.Create(ChallangeMottu.Application.CreateMotoDto,ChallangeMottu.Application.Validators.CreateMotoDtoValidator)">
             <summary>
             Cria uma nova moto.
             </summary>
+            <remarks>
+            Exemplo de requisição:
+            
+                POST /api/v1/moto/criar
+                {
+                    "placa": "ABC1D23",
+                    "posicao": "A1",
+                    "status": "pronta,
+                    "ultimaAtualizacao": "2025-11-07T21:51:00.125Z"
+                }
+            **Status permitidos para moto:** "pronta", "revisao", "reservada", "fora de serviço", "sem placa"
+            
+            **Requer autenticação:** Token JWT no header Authorization
+            </remarks>
         </member>
         <member name="M:ChallangeMottu.Api.Controllers.MotoController.Update(System.Guid,ChallangeMottu.Application.UpdateMotoDto)">
-            <summary>
-            Atualiza uma moto existente.
-            </summary>
+             <summary>
+             Atualiza uma moto existente.
+             </summary>
+             <remarks>
+            **Requer autenticação:** Token JWT no header Authorization
+             </remarks>
         </member>
         <member name="M:ChallangeMottu.Api.Controllers.MotoController.Delete(System.Guid)">
+             <summary>
+             Deleta uma moto.
+             </summary>
+             <remarks>
+            **Requer autenticação:** Token JWT no header Authorization
+             </remarks>
+        </member>
+        <member name="M:ChallangeMottu.Api.Controllers.LoginController.Login(ChallangeMottu.Application.LoginRequest)">
             <summary>
-            Deleta uma moto.
+            Realiza login e retorna token JWT.
             </summary>
+            <remarks>
+            Exemplo de requisição:
+            
+                POST /api/v2/login
+                {
+                    "email": "usuario@email.com",
+                    "senha": "senha123"
+                }
+            
+            </remarks>
         </member>
         <member name="M:ChallangeMottu.Api.Controllers.UsuarioController.GetAll">
             <summary>
             Lista todos os usuários.
             </summary>
+            <remarks>
+            **Requer autenticação:** Token JWT no header Authorization
+            </remarks>
         </member>
         <member name="M:ChallangeMottu.Api.Controllers.UsuarioController.GetById(System.Guid)">
-            <summary>
-            Obtém um usuário por ID.
-            </summary>
+             <summary>
+             Obtém um usuário por ID.
+             </summary>
+             <remarks>
+            **Requer autenticação:** Token JWT no header Authorization
+             </remarks>
         </member>
         <member name="M:ChallangeMottu.Api.Controllers.UsuarioController.Create(ChallangeMottu.Application.CreateUsuarioDto,ChallangeMottu.Application.Validators.CreateUsuarioDtoValidator)">
             <summary>
             Cria um novo usuário.
             </summary>
+            <remarks>
+            Exemplo de requisição:
+            
+                POST /api/v2/usuario/criar
+                {
+                    "nome": "usuario",
+                    "email": "usuario@email.com",
+                    "senha": "senha123",
+                    "motoId": null
+                }
+            
+            </remarks>
         </member>
         <member name="M:ChallangeMottu.Api.Controllers.UsuarioController.Update(System.Guid,ChallangeMottu.Application.UpdateUsuarioDto)">
             <summary>
             Atualiza um usuário existente.
             </summary>
+            <remarks>
+            **Requer autenticação:** Token JWT no header Authorization
+            </remarks>
         </member>
         <member name="M:ChallangeMottu.Api.Controllers.UsuarioController.Delete(System.Guid)">
             <summary>
             Deleta um usuário.
             </summary>
+            <remarks>
+            **Requer autenticação:** Token JWT no header Authorization
+            </remarks>
         </member>
     </members>
 </doc>

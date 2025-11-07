@@ -4,6 +4,8 @@ using ChallangeMottu.Application;
 using ChallangeMottu.Application.Configs;
 using ChallangeMottu.Infrastructure;
 using ChallangeMottu.Application.Mappings;
+using ChallangeMottu.Application.Service;
+using ChallangeMottu.Application.UseCase;
 using ChallangeMottu.Application.Validators;
 using FluentValidation;
 using HealthChecks.UI.Client;
@@ -15,13 +17,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 var configs = builder.Configuration.Get<Settings>();
 builder.Services.AddSingleton(configs);
+builder.Services.AddSingleton(configs.Jwt);
 
 builder.Services.AddControllers();
 
 builder.Services.AddValidatorsFromAssemblyContaining<CreateMotoDtoValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateUsuarioDtoValidator>();
-// builder.Services.AddFluentValidationAutoValidation();
-// builder.Services.AddFluentValidationClientsideAdapters();
 
 builder.Services.AddVersioning();
 // Swagger
@@ -33,9 +34,13 @@ builder.Services.AddAutoMapper(typeof(MotoProfile), typeof(LocalizacaoAtualProfi
 // --- Registrar camadas via DI ---
 builder.Services.AddInfrastructure(builder.Configuration); // DbContext + Repositories
 builder.Services.AddApplication(); // Services (MotoService, LocalizacaoAtualService, etc.)
+builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<ILoginUseCase, LoginUseCase>();
 
 // HealthCheck
 builder.Services.AddHealthCheckConfiguration(builder.Configuration);
+
+builder.Services.AddVerifyJwt(configs.Jwt);
 
 var app = builder.Build();
 
@@ -60,6 +65,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 

@@ -18,6 +18,11 @@ public class CreateUsuarioDtoValidator : AbstractValidator<CreateUsuarioDto>
             .WithMessage("O e-mail é obrigatório.")
             .EmailAddress()
             .WithMessage("O e-mail deve ser válido.");
+        
+        RuleFor(x => x.Senha)
+            .NotEmpty().WithMessage("Senha é obrigatória")
+            .MinimumLength(6).WithMessage("Senha deve ter no mínimo 6 caracteres")
+            .MaximumLength(100).WithMessage("Senha deve ter no máximo 100 caracteres");
 
         RuleFor(x => x.MotoId)
             .Must(id => id == null || id != Guid.Empty)

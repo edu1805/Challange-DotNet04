@@ -27,6 +27,16 @@ public class UsuarioMapping : IEntityTypeConfiguration<Usuario>
             .HasColumnName("EMAIL")
             .HasMaxLength(150)
             .IsRequired();
+        
+        builder.Property<string>("SenhaHash")
+            .HasColumnName("SENHA_HASH")
+            .HasMaxLength(500)
+            .IsRequired();
+
+        builder.Property<string>("SenhaSalt")
+            .HasColumnName("SENHA_SALT")
+            .HasMaxLength(500)
+            .IsRequired();
 
         builder.HasOne(u => u.Moto)
             .WithMany()

@@ -54,6 +54,8 @@ namespace ChallangeMottu.Infrastructure.Migrations
                     ID = table.Column<Guid>(type: "RAW(16)", nullable: false, defaultValueSql: "SYS_GUID()"),
                     NOME = table.Column<string>(type: "NVARCHAR2(100)", maxLength: 100, nullable: false),
                     EMAIL = table.Column<string>(type: "NVARCHAR2(150)", maxLength: 150, nullable: false),
+                    SENHA_HASH = table.Column<string>(type: "NVARCHAR2(500)", maxLength: 500, nullable: false),
+                    SENHA_SALT = table.Column<string>(type: "NVARCHAR2(500)", maxLength: 500, nullable: false),
                     MotoId = table.Column<Guid>(type: "RAW(16)", nullable: true)
                 },
                 constraints: table =>

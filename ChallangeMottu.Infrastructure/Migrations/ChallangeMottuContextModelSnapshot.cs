@@ -104,6 +104,18 @@ namespace ChallangeMottu.Infrastructure.Migrations
                         .HasColumnType("NVARCHAR2(100)")
                         .HasColumnName("NOME");
 
+                    b.Property<string>("SenhaHash")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("NVARCHAR2(500)")
+                        .HasColumnName("SENHA_HASH");
+
+                    b.Property<string>("SenhaSalt")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("NVARCHAR2(500)")
+                        .HasColumnName("SENHA_SALT");
+
                     b.HasKey("Id");
 
                     b.HasIndex("MotoId");

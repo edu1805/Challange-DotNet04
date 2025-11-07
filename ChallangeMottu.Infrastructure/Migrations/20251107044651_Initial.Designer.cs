@@ -12,7 +12,7 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace ChallangeMottu.Infrastructure.Migrations
 {
     [DbContext(typeof(ChallangeMottuContext))]
-    [Migration("20251026005135_Initial")]
+    [Migration("20251107044651_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -106,6 +106,18 @@ namespace ChallangeMottu.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("NVARCHAR2(100)")
                         .HasColumnName("NOME");
+
+                    b.Property<string>("SenhaHash")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("NVARCHAR2(500)")
+                        .HasColumnName("SENHA_HASH");
+
+                    b.Property<string>("SenhaSalt")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("NVARCHAR2(500)")
+                        .HasColumnName("SENHA_SALT");
 
                     b.HasKey("Id");
 

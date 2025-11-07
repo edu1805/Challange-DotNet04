@@ -258,3 +258,11 @@ C:\Users\Home\OneDrive\Área de Trabalho\Challenge\dotnet\ChallangeMottu\Challan
 C:\Users\Home\OneDrive\Área de Trabalho\Challenge\dotnet\ChallangeMottu\ChallangeMottu.Api\bin\Debug\net8.0\Asp.Versioning.Http.dll
 C:\Users\Home\OneDrive\Área de Trabalho\Challenge\dotnet\ChallangeMottu\ChallangeMottu.Api\bin\Debug\net8.0\Asp.Versioning.Mvc.dll
 C:\Users\Home\OneDrive\Área de Trabalho\Challenge\dotnet\ChallangeMottu\ChallangeMottu.Api\bin\Debug\net8.0\Asp.Versioning.Mvc.ApiExplorer.dll
+C:\Users\Home\OneDrive\Área de Trabalho\Challenge\dotnet\ChallangeMottu\ChallangeMottu.Api\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Home\OneDrive\Área de Trabalho\Challenge\dotnet\ChallangeMottu\ChallangeMottu.Api\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Home\OneDrive\Área de Trabalho\Challenge\dotnet\ChallangeMottu\ChallangeMottu.Api\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Home\OneDrive\Área de Trabalho\Challenge\dotnet\ChallangeMottu\ChallangeMottu.Api\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Home\OneDrive\Área de Trabalho\Challenge\dotnet\ChallangeMottu\ChallangeMottu.Api\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Home\OneDrive\Área de Trabalho\Challenge\dotnet\ChallangeMottu\ChallangeMottu.Api\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Home\OneDrive\Área de Trabalho\Challenge\dotnet\ChallangeMottu\ChallangeMottu.Api\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Home\OneDrive\Área de Trabalho\Challenge\dotnet\ChallangeMottu\ChallangeMottu.Api\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
