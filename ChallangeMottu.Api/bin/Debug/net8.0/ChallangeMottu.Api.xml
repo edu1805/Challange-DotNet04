@@ -8,6 +8,9 @@
             <summary>
             Lista todas as motos ou filtra por status.
             </summary>
+            <remarks>
+            **Status para busca:** "pronta", "revisao", "reservada", "fora de serviço"
+            </remarks>
         </member>
         <member name="M:ChallangeMottu.Api.Controllers.MotoController.GetById(System.Guid)">
             <summary>
@@ -31,7 +34,7 @@
                     "status": "pronta,
                     "ultimaAtualizacao": "2025-11-07T21:51:00.125Z"
                 }
-            **Status permitidos para moto:** "pronta", "revisao", "reservada", "fora de serviço", "sem placa"
+            **Status permitidos para moto:** "pronta", "revisao", "reservada", "fora de serviço"
             
             **Requer autenticação:** Token JWT no header Authorization
             </remarks>

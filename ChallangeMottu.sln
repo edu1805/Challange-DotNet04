@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallangeMottu.Domain", "Ch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallangeMottu.Infrastructure", "ChallangeMottu.Infrastructure\ChallangeMottu.Infrastructure.csproj", "{46EEE220-ED13-421D-918B-14BA7F6E5806}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChallangeMottu.Tests", "ChallangeMottu.Tests\ChallangeMottu.Tests.csproj", "{795C4BA8-B495-4EC3-97B4-481B2917E9CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{46EEE220-ED13-421D-918B-14BA7F6E5806}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46EEE220-ED13-421D-918B-14BA7F6E5806}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46EEE220-ED13-421D-918B-14BA7F6E5806}.Release|Any CPU.Build.0 = Release|Any CPU
+		{795C4BA8-B495-4EC3-97B4-481B2917E9CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{795C4BA8-B495-4EC3-97B4-481B2917E9CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{795C4BA8-B495-4EC3-97B4-481B2917E9CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{795C4BA8-B495-4EC3-97B4-481B2917E9CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

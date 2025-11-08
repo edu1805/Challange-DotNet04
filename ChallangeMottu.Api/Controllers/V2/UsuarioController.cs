@@ -32,7 +32,6 @@ public class UsuarioController : ControllerBase
     [SwaggerOperation(Summary = "Listar usuários", Description = "Retorna todos os usuários cadastrados.")]
     [SwaggerResponse(200, "Lista de usuários retornada com sucesso", typeof(IEnumerable<UsuarioDto>))]
     [SwaggerResponse(500, "Erro interno no servidor")]
-    [Authorize]
     public async Task<ActionResult<IEnumerable<UsuarioDto>>> GetAll()
     {
         var usuarios = await _usuarioService.ListarTodosAsync();

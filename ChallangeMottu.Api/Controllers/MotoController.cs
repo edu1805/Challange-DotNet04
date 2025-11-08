@@ -26,6 +26,9 @@ public class MotoController : ControllerBase
     /// <summary>
     /// Lista todas as motos ou filtra por status.
     /// </summary>
+    /// <remarks>
+    /// **Status para busca:** "pronta", "revisao", "reservada", "fora de serviço"
+    /// </remarks>
     [HttpGet]
     [SwaggerOperation(Summary = "Listar motos", Description = "Retorna todas as motos ou apenas as que têm o status informado.")]
     [SwaggerResponse(200, "Lista de motos retornada com sucesso", typeof(IEnumerable<MotoDto>))]
@@ -71,7 +74,7 @@ public class MotoController : ControllerBase
     ///         "status": "pronta,
     ///         "ultimaAtualizacao": "2025-11-07T21:51:00.125Z"
     ///     }
-    /// **Status permitidos para moto:** "pronta", "revisao", "reservada", "fora de serviço", "sem placa"
+    /// **Status permitidos para moto:** "pronta", "revisao", "reservada", "fora de serviço"
     /// 
     /// **Requer autenticação:** Token JWT no header Authorization
     /// </remarks>
